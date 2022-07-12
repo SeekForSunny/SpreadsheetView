@@ -47,6 +47,13 @@ extension SpreadsheetView {
             columnHeaderView.delegate = self
             rowHeaderView.delegate = self
             cornerView.delegate = self
+            
+            /// RTL
+            if frozenColumns > 0, self.isRTL {
+                let tbWidth = self.tableView.state.frame.width
+                columnHeaderView.frame.origin.x = tbWidth
+                tableView.frame.origin.x = 0
+            }
         }
 
         reloadDataIfNeeded()
@@ -302,6 +309,13 @@ extension SpreadsheetView {
             if circularScrollingOptions.headerStyle != .rowHeaderStartsFirstColumn {
                 rowHeaderView.state.frame.origin.x = tableView.state.frame.origin.x
                 rowHeaderView.state.frame.size.width = tableView.state.frame.size.width
+            }
+            
+            /// RTL
+            if self.isRTL {
+                let tbWidth = self.tableView.state.frame.width
+                columnHeaderView.state.frame.origin.x = tbWidth
+                tableView.state.frame.origin.x = 0
             }
         } else {
             tableView.state.frame.size.width = frame.width - horizontalInset
