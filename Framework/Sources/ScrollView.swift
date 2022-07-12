@@ -52,6 +52,18 @@ public final class ScrollView: UIScrollView, UIGestureRecognizerDelegate {
         visibleHorizontalGridlines = ReusableCollection<Gridline>()
         visibleBorders = ReusableCollection<Border>()
     }
+    
+    public var hitTestHandler: ((_ view: UIView, _ point: CGPoint, _ event: UIEvent?)-> UIView?)?
+        
+    public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        let view = super.hitTest(point, with: event)
+        if view == nil{
+            if let hitTestHandler = hitTestHandler {
+                return hitTestHandler(self, point, event)
+            }
+        }
+        return view
+    }
 
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return gestureRecognizer is UIPanGestureRecognizer
