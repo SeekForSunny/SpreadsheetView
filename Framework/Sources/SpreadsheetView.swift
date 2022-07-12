@@ -338,6 +338,9 @@ public class SpreadsheetView: UIView {
 
     private var needsReload = true
 
+    /// RTL适配
+    public  var isRTL: Bool = false
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
