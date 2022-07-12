@@ -320,7 +320,7 @@ public class SpreadsheetView: UIView {
     let columnHeaderView = ScrollView()
     let rowHeaderView = ScrollView()
     let cornerView = ScrollView()
-    let tableView = ScrollView()
+    public let tableView = ScrollView()
 
     private var cellClasses = [String: Cell.Type]()
     private var cellNibs = [String: UINib]()
