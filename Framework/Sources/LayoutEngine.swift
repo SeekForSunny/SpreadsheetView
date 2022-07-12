@@ -247,7 +247,21 @@ final class LayoutEngine {
                 return true
             }
 
-            let address = Address(row: row, column: column, rowIndex: rowIndex, columnIndex: columnIndex)
+            
+            /// RTL
+            var address: Address!
+            /// 坐标翻转
+            let isTableView = spreadsheetView.tableView == scrollView
+            if spreadsheetView.isRTL{
+                if isTableView, spreadsheetView.frozenColumns > 0 {
+                    address = Address(row: row, column: numberOfColumns - column, rowIndex: rowIndex, columnIndex: numberOfColumns - columnIndex)
+                }else{
+                    address = Address(row: row, column: numberOfColumns - column - 1, rowIndex: rowIndex, columnIndex: numberOfColumns - columnIndex - 1)
+                }
+            }else{
+                address = Address(row: row, column: column, rowIndex: rowIndex, columnIndex: columnIndex)
+            }
+            
             visibleCellAddresses.insert(address)
 
             let cellSize = CGSize(width: columnWidth, height: rowHeight)
