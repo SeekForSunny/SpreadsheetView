@@ -30,6 +30,8 @@ extension SpreadsheetView: UIScrollViewDelegate {
             if self.isRTL {
                 let tbWidth = self.tableView.state.frame.width
                 columnHeaderView.frame.origin.x = tbWidth
+                
+                rowHeaderView.frame.origin.x = tbWidth
             }
         }
         if tableView.contentOffset.y < 0 && !stickyRowHeader {
