@@ -53,6 +53,9 @@ extension SpreadsheetView {
                 let tbWidth = self.tableView.state.frame.width
                 columnHeaderView.frame.origin.x = tbWidth
                 tableView.frame.origin.x = 0
+                
+                cornerView.frame.origin.x = tbWidth
+                rowHeaderView.frame.origin.x = 0
             }
         }
 
@@ -297,10 +300,10 @@ extension SpreadsheetView {
         let horizontalInset = contentInset.left + contentInset.right
         let verticalInset = contentInset.top + contentInset.bottom
 
-        cornerView.state.frame = CGRect(origin: .zero, size: cornerView.state.contentSize)
         columnHeaderView.state.frame = CGRect(x: 0, y: 0, width: columnHeaderView.state.contentSize.width, height: frame.height)
-        rowHeaderView.state.frame = CGRect(x: 0, y: 0, width: frame.width, height: rowHeaderView.state.contentSize.height)
         tableView.state.frame = CGRect(origin: .zero, size: frame.size)
+        cornerView.state.frame = CGRect(origin: .zero, size: cornerView.state.contentSize)
+        rowHeaderView.state.frame = CGRect(x: 0, y: 0, width: frame.width, height: rowHeaderView.state.contentSize.height)
 
         if frozenColumns > 0 {
             tableView.state.frame.origin.x = columnHeaderView.state.frame.width - intercellSpacing.width
@@ -316,6 +319,9 @@ extension SpreadsheetView {
                 let tbWidth = self.tableView.state.frame.width
                 columnHeaderView.state.frame.origin.x = tbWidth
                 tableView.state.frame.origin.x = 0
+                
+                cornerView.state.frame.origin.x = tbWidth
+                rowHeaderView.state.frame.origin.x = 0
             }
         } else {
             tableView.state.frame.size.width = frame.width - horizontalInset
@@ -365,4 +371,6 @@ extension SpreadsheetView {
         let index = records.insertionIndex(of: offset)
         return index == 0 ? 0 : index - 1
     }
+    
 }
+
