@@ -252,11 +252,16 @@ final class LayoutEngine {
             var address: Address!
             /// 坐标翻转
             let isTableView = spreadsheetView.tableView == scrollView
+            let isRowHeaderView = spreadsheetView.rowHeaderView == scrollView
             if spreadsheetView.isRTL{
                 if isTableView, spreadsheetView.frozenColumns > 0 {
                     address = Address(row: row, column: numberOfColumns - column, rowIndex: rowIndex, columnIndex: numberOfColumns - columnIndex)
                 }else{
-                    address = Address(row: row, column: numberOfColumns - column - 1, rowIndex: rowIndex, columnIndex: numberOfColumns - columnIndex - 1)
+                    if isRowHeaderView {
+                        address = Address(row: row, column: numberOfColumns - column, rowIndex: rowIndex, columnIndex: numberOfColumns - columnIndex - 1)
+                    }else {
+                        address = Address(row: row, column: numberOfColumns - column - 1, rowIndex: rowIndex, columnIndex: numberOfColumns - columnIndex - 1)
+                    }
                 }
             }else{
                 address = Address(row: row, column: column, rowIndex: rowIndex, columnIndex: columnIndex)
