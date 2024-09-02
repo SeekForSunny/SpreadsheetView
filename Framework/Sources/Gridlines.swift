@@ -17,6 +17,13 @@ public struct Gridlines {
     public static func all(_ style: GridStyle) -> Gridlines {
         return Gridlines(top: style, bottom: style, left: style, right: style)
     }
+
+    public init(top: GridStyle, bottom: GridStyle, left: GridStyle, right: GridStyle) {
+        self.top = top
+        self.bottom = bottom
+        self.left = left
+        self.right = right
+    }
 }
 
 public enum GridStyle {
