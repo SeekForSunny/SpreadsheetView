@@ -18,7 +18,7 @@ public struct Borders {
         return Borders(top: style, bottom: style, left: style, right: style)
     }
 
-    public init(top: GridStyle, bottom: GridStyle, left: GridStyle, right: GridStyle) {
+    public init(top: BorderStyle, bottom: BorderStyle, left: BorderStyle, right: BorderStyle) {
         self.top = top
         self.bottom = bottom
         self.left = left
